@@ -1,0 +1,30 @@
+<html>
+	<head>
+		<script src="node_modules/angular/angular.js"></script>
+		<script>
+			angular.module('myApp', []);
+			var app = angular.module('myApp');
+			
+			app.service('pessoaService', function($http) {
+				var vm = this;
+				vm.consultar = consultar;
+				
+				function consultar(){
+					return $http.get("http://localhost:8080/crud/rest/pessoa/consulta");
+				}
+			});
+			
+			app.controller('pessoaController', function($scope, pessoaService){
+				pessoaService.consultar().then(function(response){
+					$scope.pessoa = response.data
+				})
+				
+			})
+		</script>
+	</head>
+	<body ng-app="myApp", ng-controller="pessoaController">
+		Nome: <input type="text" ng-model="pessoa.nome" /><br /><br />
+		CPF: <input type="text" ng-model="pessoa.cpf" /><br /><br />
+		Idade: <input type="text" ng-model="pessoa.idade" /><br /><br />
+	</body>
+</html>
