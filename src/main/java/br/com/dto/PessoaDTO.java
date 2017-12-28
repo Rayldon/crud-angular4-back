@@ -2,7 +2,7 @@ package br.com.dto;
 
 import java.io.Serializable;
 
-public class PessoaDTO implements Serializable { /**
+public class PessoaDTO implements Serializable {  /**
 	 * 
 	 */
 	private static final long serialVersionUID = 3148121619686208671L;

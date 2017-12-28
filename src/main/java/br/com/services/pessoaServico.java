@@ -13,7 +13,7 @@ import br.com.dto.PessoaDTO;
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 
-public class pessoaServico {
+public class pessoaServico { 
 	
 	@GET
 	@Path("/consulta")
