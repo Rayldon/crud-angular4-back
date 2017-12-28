@@ -10,6 +10,7 @@ public class PessoaDTO implements Serializable { /**
 	private long idade;
 	private String nome;
 	private String cpf;
+	private long id;
 	
 	
 	public long getIdade() {
@@ -29,6 +30,12 @@ public class PessoaDTO implements Serializable { /**
 	}
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
+	}
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
 	}
 
 }
