@@ -16,7 +16,7 @@
 			
 			app.controller('pessoaController', function($scope, pessoaService){
 				pessoaService.consultar().then(function(response){
-					$scope.pessoa = response.data
+					$scope.pessoa = response.data[0]
 				})
 				
 			})
