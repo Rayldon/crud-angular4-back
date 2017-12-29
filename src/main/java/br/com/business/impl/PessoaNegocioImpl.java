@@ -19,9 +19,21 @@ public class PessoaNegocioImpl implements PessoaNegocio {
 	
 	@Override
 	public PessoaDTO salvar(PessoaDTO pessoaDTO) {
+		Pessoa pessoa = new Pessoa();
+		
+		pessoa.setId(pessoaDTO.getId());
+		pessoa.setNome(pessoaDTO.getNome());
+		pessoa.setCpf(pessoaDTO.getCpf());
+		pessoa.setIdade(pessoaDTO.getIdade());
+		pessoaPersistencia.salvar(pessoa);
 		
 		return pessoaDTO;
 	} 
+	
+	@Override
+	public void excluir(Long idUsuario) {
+		pessoaPersistencia.excluir(idUsuario);
+	}
 	
 	@Override
 	public List<PessoaDTO> obterTodos(){

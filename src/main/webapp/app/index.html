@@ -8,16 +8,31 @@
 			app.service('pessoaService', function($http) {
 				var vm = this;
 				vm.consultar = consultar;
+				vm.excluir = excluir;
 				
 				function consultar(){
 					return $http.get("http://localhost:8080/crud/rest/pessoa/consulta");
 				}
+				
+				function excluir(idUsuario){
+		        	return $http.get("http://localhost:8080/crud/rest/pessoa/excluir/" +idUsuario);
+		};
 			});
 			
 			app.controller('pessoaController', function($scope, pessoaService){
 				pessoaService.consultar().then(function(response){
 					$scope.pessoa = response.data[0]
-				})
+				});
+				
+				$scope.excluirUsuario = function(idUsuario){
+					pessoaService.excluir(idUsuario)
+					.then(function (response){
+						$scope.success = "Removido com sucesso";
+		            },function (error){
+		                $scope.error = 'Unable to load customer data: ' + error.message;
+				});
+				
+				}
 				
 			})
 		</script>
@@ -26,5 +41,6 @@
 		Nome: <input type="text" ng-model="pessoa.nome" /><br /><br />
 		CPF: <input type="text" ng-model="pessoa.cpf" /><br /><br />
 		Idade: <input type="text" ng-model="pessoa.idade" /><br /><br />
+		<a href="javascript:void(0)" ng-click="excluirUsuario(pessoa.id)">excluir</a>
 	</body>
 </html>

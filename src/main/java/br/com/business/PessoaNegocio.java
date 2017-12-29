@@ -7,5 +7,7 @@ import br.com.dto.PessoaDTO;
 public interface PessoaNegocio {
 	PessoaDTO salvar(PessoaDTO pessoa); 
 	
+	void excluir(Long idUsuario);
+	
 	List<PessoaDTO> obterTodos();
 }
