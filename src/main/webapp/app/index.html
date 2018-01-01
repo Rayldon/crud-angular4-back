@@ -1,46 +1,21 @@
 <html>
 	<head>
-		<script src="node_modules/angular/angular.js"></script>
-		<script>
-			angular.module('myApp', []);
-			var app = angular.module('myApp');
-			
-			app.service('pessoaService', function($http) {
-				var vm = this;
-				vm.consultar = consultar;
-				vm.excluir = excluir;
-				
-				function consultar(){
-					return $http.get("http://localhost:8080/crud/rest/pessoa/consulta");
-				}
-				
-				function excluir(idUsuario){
-		        	return $http.get("http://localhost:8080/crud/rest/pessoa/excluir/" +idUsuario);
-		};
-			});
-			
-			app.controller('pessoaController', function($scope, pessoaService){
-				pessoaService.consultar().then(function(response){
-					$scope.pessoa = response.data[0]
-				});
-				
-				$scope.excluirUsuario = function(idUsuario){
-					pessoaService.excluir(idUsuario)
-					.then(function (response){
-						$scope.success = "Removido com sucesso";
-		            },function (error){
-		                $scope.error = 'Unable to load customer data: ' + error.message;
-				});
-				
-				}
-				
-			})
-		</script>
+		<script src="node_modules/angular/angular.min.js"></script>
+		<script src="node_modules/angular-route/angular-route.min.js"></script>
+		
+		<script src="node_modules/angular-animate/angular-animate.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="node_modules/angular-toastr/dist/angular-toastr.css" />
+		<script src="node_modules/angular-toastr/dist/angular-toastr.js"></script>
+		
+		<script src="main.js"></script>
+		<script src="router.js"></script>
+		<script src="manterPessoa/pessoaController.js"></script>
+		<script src="manterPessoa/pessoaService.js"></script>
+
 	</head>
-	<body ng-app="myApp", ng-controller="pessoaController">
-		Nome: <input type="text" ng-model="pessoa.nome" /><br /><br />
-		CPF: <input type="text" ng-model="pessoa.cpf" /><br /><br />
-		Idade: <input type="text" ng-model="pessoa.idade" /><br /><br />
-		<a href="javascript:void(0)" ng-click="excluirUsuario(pessoa.id)">excluir</a>
+	<body>
+		<div ng-app="myApp" id="main">
+	 		<div ng-view></div>
+		</div>
 	</body>
 </html>

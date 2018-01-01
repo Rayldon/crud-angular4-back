@@ -1,0 +1,26 @@
+<div>
+	Nome: <input type="text" ng-model="pessoa.nome" /><br /><br />
+	CPF: <input type="text" ng-model="pessoa.cpf" /><br /><br />
+	Idade: <input type="text" ng-model="pessoa.idade" /><br /><br />
+	<input type="button" ng-click="excluirUsuario(pessoa.id)" value="excluir" />
+	<input type="button" ng-click="salvar()" value="Salvar" />
+	
+	<table border="1">
+		<tr>
+			<th>id</th>
+			<th>nome</th>
+			<th>cpf</th>
+			<th>idade</th>
+			<th></th>
+			<th></th>
+		</tr>
+		<tr ng-repeat="pessoa in listaPessoa">
+			<td>{{pessoa.id}}</td>
+			<td>{{pessoa.nome}}</td>
+			<td>{{pessoa.cpf}}</td>
+			<td>{{pessoa.idade}}</td>
+			<td><a href="" ng-click="alterar(pessoa)">alterar</a></td>
+			<td><a href="" ng-click="excluir(pessoa.id)">excluir</a></td>
+		</tr>
+	</table>
+</div>
