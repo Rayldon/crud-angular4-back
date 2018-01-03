@@ -1,6 +1,9 @@
 package br.com.dto;
 
 import java.io.Serializable;
+import java.util.List;
+
+import br.com.model.Telefone;
 
 public class PessoaDTO implements Serializable {  /**
 	 * 
@@ -11,6 +14,7 @@ public class PessoaDTO implements Serializable {  /**
 	private String nome;
 	private String cpf;
 	private long id;
+	private List<Telefone> telefones;
 	
 	
 	public long getIdade() {
@@ -36,6 +40,12 @@ public class PessoaDTO implements Serializable {  /**
 	}
 	public void setId(long id) {
 		this.id = id;
+	}
+	public List<Telefone> getTelefones() {
+		return telefones;
+	}
+	public void setTelefones(List<Telefone> telefones) {
+		this.telefones = telefones;
 	}
 
 }

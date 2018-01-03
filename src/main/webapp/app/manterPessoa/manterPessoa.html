@@ -2,6 +2,8 @@
 	Nome: <input type="text" ng-model="pessoa.nome" /><br /><br />
 	CPF: <input type="text" ng-model="pessoa.cpf" /><br /><br />
 	Idade: <input type="text" ng-model="pessoa.idade" /><br /><br />
+	Telefone 01: <telefone model="pessoa.telefones[0].telefone" classe="form-control"></telefone><br /><br />
+	Telefone 02: <telefone model="pessoa.telefones[1].telefone" classe="form-control"></telefone><br /><br />
 	<input type="button" ng-click="excluirUsuario(pessoa.id)" value="excluir" />
 	<input type="button" ng-click="salvar()" value="Salvar" />
 	
@@ -11,6 +13,7 @@
 			<th>nome</th>
 			<th>cpf</th>
 			<th>idade</th>
+			<th>telefone</th>
 			<th></th>
 			<th></th>
 		</tr>
@@ -19,6 +22,9 @@
 			<td>{{pessoa.nome}}</td>
 			<td>{{pessoa.cpf}}</td>
 			<td>{{pessoa.idade}}</td>
+			<td>{{pessoa.telefones[0].telefone}}<br />
+				{{pessoa.telefones[1].telefone}}
+			</td>
 			<td><a href="" ng-click="alterar(pessoa)">alterar</a></td>
 			<td><a href="" ng-click="excluir(pessoa.id)">excluir</a></td>
 		</tr>

@@ -1,12 +1,17 @@
 package br.com.model;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -20,8 +25,8 @@ public class Pessoa implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="ID")
-	private long id;
+	@Column(name="ID_PESSOA")
+	private long idPessoa;
 	
 	@Column(name="NOME")
 	private String nome;
@@ -32,12 +37,16 @@ public class Pessoa implements Serializable{
 	@Column(name="IDADE")
 	private long idade;
 	
-	public Long getId() {
-		return this.id;
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+	@JoinColumn(name = "ID_PESSOA", referencedColumnName = "ID_PESSOA")
+	private List<Telefone> telefones;
+	
+	public Long getIdPessoa() {
+		return this.idPessoa;
 	}
 	
-	public void setId(Long id) {
-		this.id = id;
+	public void setIdPessoa(Long idPessoa) {
+		this.idPessoa = idPessoa;
 	}
 	public String getNome() {
 		return nome;
@@ -60,5 +69,13 @@ public class Pessoa implements Serializable{
 	public void setIdade(Long idade) {
 		this.idade = idade;
 	}
+	
+	public List<Telefone> getTelefones() {
+		return telefones;
+	}
+
+	public void setTelefones(List<Telefone> lists) {
+		this.telefones = lists;
+}
 
 }
