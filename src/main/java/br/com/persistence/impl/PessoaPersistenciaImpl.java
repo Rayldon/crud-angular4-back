@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.ejb.Stateless;
 
+import javax.persistence.Query;
 import br.com.model.Pessoa;
 import br.com.model.Telefone;
 import br.com.persistence.PessoaPersistencia;
@@ -14,12 +15,26 @@ public class PessoaPersistenciaImpl extends PersistenciaImpl<Pessoa, Serializabl
 	
 	@Override
 	public Pessoa salvar(Pessoa usuario){
-		if(usuario.getTelefones() != null) {
-			for(Telefone tel : usuario.getTelefones()) {
-				getEntityManager().merge(tel);
+		String tel[] = new String[10];
+		int i = 0;
+		
+		if(usuario.getTelefones() != null && !usuario.getTelefones().isEmpty())
+			for(Telefone t : usuario.getTelefones()) {
+				tel[i] = t.getTelefone();
+				i++;
 			}
-		}
-		return getEntityManager().merge(usuario);
+
+		usuario = getEntityManager().merge(usuario);
+		i = 0;
+		if(usuario.getTelefones() != null && !usuario.getTelefones().isEmpty())
+			for(Telefone t : usuario.getTelefones()) {
+				t.setIdPessoa(usuario.getIdPessoa());
+				t.setTelefone(tel[i]);
+				getEntityManager().merge(t);
+				i++;
+			}
+		
+		return usuario;
 	}
 	
 	@Override
@@ -34,7 +49,13 @@ public class PessoaPersistenciaImpl extends PersistenciaImpl<Pessoa, Serializabl
 	
 	@Override
 	public List<Pessoa> obterTodos(){
-		return obterTodos(Pessoa.class);
+		
+		StringBuilder sb = new StringBuilder(" SELECT p FROM Pessoa p");
+		sb.append(" INNER JOIN FETCH p.telefones group by p ");
+		Query query = getEntityManager().createQuery(sb.toString());
+		
+		return query.getResultList();
+
 	}
 
 }

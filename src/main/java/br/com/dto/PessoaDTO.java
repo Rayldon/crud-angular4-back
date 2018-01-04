@@ -10,17 +10,17 @@ public class PessoaDTO implements Serializable {  /**
 	 */
 	private static final long serialVersionUID = 3148121619686208671L;
 
-	private long idade;
+	private Long idade;
 	private String nome;
 	private String cpf;
-	private long id;
+	private Long id;
 	private List<Telefone> telefones;
 	
 	
-	public long getIdade() {
+	public Long getIdade() {
 		return idade;
 	}
-	public void setIdade(long idade) {
+	public void setIdade(Long idade) {
 		this.idade = idade;
 	}
 	public String getNome() {
@@ -35,10 +35,10 @@ public class PessoaDTO implements Serializable {  /**
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public List<Telefone> getTelefones() {

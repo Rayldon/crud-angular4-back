@@ -26,7 +26,7 @@ public class Pessoa implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="ID_PESSOA")
-	private long idPessoa;
+	private Long idPessoa;
 	
 	@Column(name="NOME")
 	private String nome;
@@ -35,9 +35,9 @@ public class Pessoa implements Serializable{
 	private String cpf;
 	
 	@Column(name="IDADE")
-	private long idade;
+	private Long idade;
 	
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "ID_PESSOA", referencedColumnName = "ID_PESSOA")
 	private List<Telefone> telefones;
 	

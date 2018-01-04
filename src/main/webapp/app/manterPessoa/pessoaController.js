@@ -1,6 +1,7 @@
 app.controller('pessoaController', function($scope, pessoaService, toastr) {
 	consultar();
 	function consultar(){
+		$scope.pessoa = {'telefones': []}
 		pessoaService.consultar().then(function(response) {
 			$scope.listaPessoa = response.data
 		});

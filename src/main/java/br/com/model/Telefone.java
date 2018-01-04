@@ -22,10 +22,10 @@ public class Telefone implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="ID_TELEFONE")
-	private long idTelefone;
+	private Long idTelefone;
 	
 	@Column(name="ID_PESSOA")
-	private long idPessoa;
+	private Long idPessoa;
 	
 	@Column(name = "TELEFONE")
 	private String telefone;
