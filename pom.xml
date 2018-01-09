@@ -11,8 +11,6 @@
   <url>http://maven.apache.org</url>
 
   <properties>
-  	<maven.compiler.source>1.8</maven.compiler.source>
-  	<maven.compiler.target>1.8</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
@@ -55,28 +53,46 @@
 	    <version>1.2</version>
 	    <scope>provided</scope>
 	</dependency>
+	<dependency>
+	    <groupId>javax.servlet</groupId>
+	    <artifactId>servlet-api</artifactId>
+	    <version>2.5</version>
+	    <scope>provided</scope>
+	</dependency>
   </dependencies>
   
 	<build>
 	  <finalName>${project.artifactId}</finalName>
 	<plugins>
 		<plugin>
-			<groupId>org.apache.maven.plugins</groupId>
-			<artifactId>maven-war-plugin</artifactId>
-			<version>2.6</version>
-			<configuration>
-			<failOnMissingWebXml>false</failOnMissingWebXml>
-			<webResources>
-			           <resource>
-			               <filtering>true</filtering>
-			               <directory>src/main/webapp</directory>
-			               <includes>
-			                   <include>**/web.xml</include>
-			               </includes>
-			           </resource>
-			       </webResources>
-			</configuration>
-		</plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.0.0</version>
+                <configuration>
+                    <failOnMissingWebXml>true</failOnMissingWebXml>
+                    <webResources>
+                        <resource>
+                            <!-- this is relative to the pom.xml directory -->
+                            <directory>src/main/webapp</directory>
+                            <!-- the list has a default value of ** -->
+                            <includes>
+                                <include>WEB-INF/**</include>
+                                <include>META-INF/**</include>
+                            </includes>
+                        </resource>
+                        <resource>
+                            <!-- this is relative to the pom.xml directory -->
+                            <directory>src/main/webapp/target</directory>
+                            <!-- the list has a default value of ** -->
+                            <includes>
+                                <include>**</include>
+                            </includes>
+                            <targetPath>.</targetPath>
+                        </resource>
+                    </webResources>
+                    <warSourceExcludes>**</warSourceExcludes>
+                </configuration>
+            </plugin>
 	</plugins>
 	</build>
 </project>

@@ -20,14 +20,11 @@ public class PessoaNegocioImpl implements PessoaNegocio {
 	@Override
 	public PessoaDTO salvar(PessoaDTO pessoaDTO) {
 		Pessoa pessoa = new Pessoa();
-		
 		pessoa.setIdPessoa(pessoaDTO.getId());
 		pessoa.setNome(pessoaDTO.getNome());
 		pessoa.setCpf(pessoaDTO.getCpf());
 		pessoa.setIdade(pessoaDTO.getIdade());
-		pessoa.setTelefones(pessoaDTO.getTelefones());
 		pessoaPersistencia.salvar(pessoa);
-		
 		return pessoaDTO;
 	} 
 	
@@ -48,7 +45,6 @@ public class PessoaNegocioImpl implements PessoaNegocio {
 			pessoaDTO.setNome(pessoa.getNome());
 			pessoaDTO.setCpf(pessoa.getCpf());
 			pessoaDTO.setIdade(pessoa.getIdade());
-			pessoaDTO.setTelefones(pessoa.getTelefones());
 			listaDTO.add(pessoaDTO);
 		}
 		return listaDTO;

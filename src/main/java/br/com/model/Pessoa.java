@@ -1,17 +1,12 @@
 package br.com.model;
 
 import java.io.Serializable;
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -25,7 +20,7 @@ public class Pessoa implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="ID_PESSOA")
+	@Column(name="ID")
 	private Long idPessoa;
 	
 	@Column(name="NOME")
@@ -36,10 +31,6 @@ public class Pessoa implements Serializable{
 	
 	@Column(name="IDADE")
 	private Long idade;
-	
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "ID_PESSOA", referencedColumnName = "ID_PESSOA")
-	private List<Telefone> telefones;
 	
 	public Long getIdPessoa() {
 		return this.idPessoa;
@@ -69,13 +60,4 @@ public class Pessoa implements Serializable{
 	public void setIdade(Long idade) {
 		this.idade = idade;
 	}
-	
-	public List<Telefone> getTelefones() {
-		return telefones;
-	}
-
-	public void setTelefones(List<Telefone> lists) {
-		this.telefones = lists;
-}
-
 }
