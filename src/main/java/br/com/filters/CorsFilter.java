@@ -1,4 +1,4 @@
-package br.com.services;
+package br.com.filters;
 
 import java.io.IOException;
 import javax.servlet.Filter;
