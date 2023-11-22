@@ -12,6 +12,8 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	<maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
   </properties>
 
   <dependencies>
@@ -43,11 +45,6 @@
 	</dependency>
 	
 	<dependency>
-	    <groupId>mysql</groupId>
-	    <artifactId>mysql-connector-java</artifactId>
-	    <version>5.1.6</version>
-	</dependency>
-	<dependency>
 	    <groupId>javax.enterprise</groupId>
 	    <artifactId>cdi-api</artifactId>
 	    <version>1.2</version>
@@ -62,37 +59,23 @@
   </dependencies>
   
 	<build>
-	  <finalName>${project.artifactId}</finalName>
-	<plugins>
-		<plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>3.0.0</version>
-                <configuration>
-                    <failOnMissingWebXml>true</failOnMissingWebXml>
-                    <webResources>
-                        <resource>
-                            <!-- this is relative to the pom.xml directory -->
-                            <directory>src/main/webapp</directory>
-                            <!-- the list has a default value of ** -->
-                            <includes>
-                                <include>WEB-INF/**</include>
-                                <include>META-INF/**</include>
-                            </includes>
-                        </resource>
-                        <resource>
-                            <!-- this is relative to the pom.xml directory -->
-                            <directory>src/main/webapp/target</directory>
-                            <!-- the list has a default value of ** -->
-                            <includes>
-                                <include>**</include>
-                            </includes>
-                            <targetPath>.</targetPath>
-                        </resource>
-                    </webResources>
-                    <warSourceExcludes>**</warSourceExcludes>
-                </configuration>
-            </plugin>
-	</plugins>
+		<resources>
+			<resource>
+				<directory>src/main/webapp</directory>
+			</resource>
+		</resources>
+		<finalName>${project.artifactId}</finalName>
+		<plugins>
+			<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-war-plugin</artifactId>
+					<version>3.3.2</version>
+					<configuration>
+						<failOnMissingWebXml>true</failOnMissingWebXml>
+						<warSourceDirectory>src/main/webapp</warSourceDirectory>
+						<webXml>src/main/webapp/WEB-INF/web.xml</webXml>
+					</configuration>
+				</plugin>
+		</plugins>
 	</build>
 </project>
